@@ -10,8 +10,15 @@ const Registration = () => {
            const PhotoURL=from.PhotoURL.value
            const email=from.email.value
            const password=from.password.value
+           createUser(email,password)
+           .then(result=>{
+            const user=result.user
+            console.log(user)
 
-    }
+           })
+           .catch(error=>console.log(error))
+
+}
     return (
         <form onSubmit={handlarSubmit}  className="card-body">
         <div className="form-control">
