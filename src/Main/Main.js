@@ -9,6 +9,7 @@ const Main = () => {
         <div>
             <div>
                 <Navber></Navber>
+                
             </div>
           <div>
                 <Outlet></Outlet>

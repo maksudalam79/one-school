@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 
-const Leftside = () => {
-    const {category,setCategory}=useState([]);
-    useEffect(()=>{
-        fetch('http://localhost:5000/coursesCategory')
-        .then(res=>res.json())
-        .then(data=>console.log(data))
-    },[])
+
+const Leftside = ({cata}) => {
+const {name,id}=cata
+    
+    
   
     return (
-        <div>
-            <h2>This is Left side Nav</h2>
-        </div>
+       <li><Link to={`/courses/${id}`}>{name}</Link></li>
     );
 };
 
