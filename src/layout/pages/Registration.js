@@ -14,6 +14,7 @@ const Registration = () => {
            .then(result=>{
             const user=result.user
             console.log(user)
+            from.reset()
 
            })
            .catch(error=>console.log(error))
