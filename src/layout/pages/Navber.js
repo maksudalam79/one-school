@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { FaUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contex/AuthProvider';
 
 const Navber = () => {
+    const {user,logOut}=useContext(AuthContext)
+    const handlarLogOut=()=>{
+        logOut()
+        .then (()=>{})
+        .catch(error=>
+            {
+                console.error(error)
+            })
+    }
     return (
         <div className="navbar bg-base-100">
   <div className="navbar-start">
@@ -21,7 +32,23 @@ const Navber = () => {
     </ul>
   </div>
   <div className="navbar-end">
+    {
+        user?.photoURL?
+        <img className="w-10 rounded-full mr-2" src={user?.photoURL} />
+        :
+        <FaUser></FaUser>
+    }
+  
+  {
+    user?.uid?
+    <>
+    <p className='mr-2'>{user?.displayName}</p>
+    <button onClick={handlarLogOut} className="btn btn-active btn-ghost">Log out</button>
+    </>
+    :
     <Link to='/registration' className="btn">Registration</Link>
+  }
+    
   </div>
 </div>
     );

@@ -1,6 +1,19 @@
-import React from 'react';
+import { GoogleAuthProvider } from 'firebase/auth';
+import React, { useContext } from 'react';
+import { FaGoogle,FaGithub } from "react-icons/fa";
+import { AuthContext } from '../../contex/AuthProvider';
 
 const Header = () => {
+    const {providerLogin}=useContext(AuthContext)
+    const googleProvider=new GoogleAuthProvider()
+    const handlergoogleSignin=()=>{
+        providerLogin(googleProvider)
+        .then(result=>{
+            const user=result.user
+            console.log(user)
+        })
+        .catch(error=>console.log(error))
+    }
     return (
         <div className="hero min-h-screen bg-base-200">
   <div className="hero-content flex-col lg:flex-row-reverse">
@@ -9,7 +22,7 @@ const Header = () => {
       <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
     </div>
     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-      <div className="card-body">
+      <form  className="card-body">
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
@@ -26,9 +39,11 @@ const Header = () => {
           </label>
         </div>
         <div className="form-control mt-6">
-          <button className="btn btn-primary">Login</button>
+          <button className="btn btn-primary mb-2">Login</button>
+          <button onClick={handlergoogleSignin} className="btn btn-info mb-2"><FaGoogle></FaGoogle> Log in with google</button>
+          <button className="btn btn-success mb-2"><FaGithub></FaGithub> Log in with Github</button>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </div>

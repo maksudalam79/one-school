@@ -20,6 +20,9 @@ export const router=createBrowserRouter([
                 {
                     path:'/registration',
                     element:<Registration></Registration>
+                },
+                {
+                    path:'/coursesDetails/:id'
                 }
             ]
          }
