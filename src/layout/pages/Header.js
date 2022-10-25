@@ -1,11 +1,12 @@
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import React, { useContext } from "react";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../contex/AuthProvider";
 
 const Header = () => {
-  const { providerLogin, signIn } = useContext(AuthContext);
+  const { providerLogin, signIn,providerGithub } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
+  const githubprovider=new GithubAuthProvider()
   const handlergoogleSignin = () => {
     providerLogin(googleProvider)
       .then((result) => {
@@ -14,6 +15,14 @@ const Header = () => {
       })
       .catch((error) => console.log(error));
   };
+  const handlergithubSignin=()=>{
+    providerGithub(githubprovider)
+    .then(result=>{
+        const user=result.user
+        console.log(user)
+    })
+    .catch(error=>console.log(error))
+  }
   const handlarLogIn = (event) => {
     event.preventDefault();
     const from = event.target;
@@ -77,7 +86,7 @@ const Header = () => {
               >
                 <FaGoogle></FaGoogle> Log in with google
               </button>
-              <button className="btn btn-success mb-2">
+              <button onClick={handlergithubSignin} className="btn btn-success mb-2">
                 <FaGithub></FaGithub> Log in with Github
               </button>
             </div>
