@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLoaderData } from 'react-router-dom';
 
 
 
@@ -8,16 +8,13 @@ const CoursesDeatiles = () => {
 
 
    
- useEffect(()=>{
-  fetch('http://localhost:5000/coursesCategory')
-  .then(res=>res.json())
-  .then(data=>console.log(data))
- },[])
+ 
 
     return (
-        <div>
-        
-      </div>
+   <div>
+    
+
+   </div>
       
     );
 };

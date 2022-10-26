@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contex/AuthProvider';
 
 const Navber = () => {
     const {user,logOut}=useContext(AuthContext)
+  
     const handlarLogOut=()=>{
         logOut()
         .then (()=>{})
@@ -13,6 +14,7 @@ const Navber = () => {
                 console.error(error)
             })
     }
+    
     return (
         <div className="navbar bg-base-100">
   <div className="navbar-start">
@@ -26,10 +28,14 @@ const Navber = () => {
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal p-0">
       <li><Link to='/'>Home</Link></li>
-      <li><Link to="/courses">Courses</Link></li>
-      <li><Link>Blog</Link></li>
+      <li><Link to='/blog'>Blog</Link></li>
       <li><Link>FaQ</Link></li>
       <li><Link to='/log in'>Log In</Link></li>
+      <div className="form-control" >
+  <label className="label cursor-pointer">
+    <input type="checkbox" className="toggle toggle-primary" checked />
+  </label>
+</div>
     </ul>
   </div>
   <div className="navbar-end">

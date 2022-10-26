@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import CoursesDeatiles from './CoursesDeatiles';
 
 
 
@@ -18,9 +19,11 @@ const Leftside = () => {
         {
             courses.map(course=><li>
                 <Link to={`/courses/${course.id}`}
-            key={course}
-             >{course.name}</Link>
-            </li>)
+            key={course.id}
+            >{course.name}</Link>
+            </li>
+                
+            )
         }
        </div>
     );

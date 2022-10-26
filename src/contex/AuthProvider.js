@@ -8,6 +8,7 @@ export const AuthContext=createContext()
 const auth=getAuth(app)
 const AuthProvider = ({children}) => {
     const [user,setUser]=useState(null)
+    
     const providerLogin=(Provider)=>{
        return signInWithPopup(auth,Provider)
     }
@@ -24,6 +25,8 @@ const AuthProvider = ({children}) => {
         return signOut(auth)
     }
 
+
+
     useEffect(()=>{
       const unsubcribe=onAuthStateChanged(auth,(currentUser)=>{
             console.log('user inside the state Change',currentUser)
@@ -38,7 +41,8 @@ const AuthProvider = ({children}) => {
         logOut,
         createUser,
         signIn,
-        providerGithub
+        providerGithub,
+        
     }
     return (
         <div>
