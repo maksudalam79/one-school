@@ -1,41 +1,26 @@
-import { useEffect, useState } from "react";
-import {  useLoaderData } from "react-router-dom";
-import Card from "./Card";
-import CoursesDeatiles from "./CoursesDeatiles";
-import Leftside from "./Leftside";
+import React from 'react';
+import { useLoaderData } from 'react-router-dom';
+import Card from './Card';
 
 
 const Courses = () => {
-  const category=useLoaderData()
-  const [courses,setCourse]=useState([])
-  useEffect(()=>{
-       fetch("http://localhost:5000/deatiles")
-       .then(res=>res.json())
-       .then(data=>setCourse(data))
-  },[])
-  return (
-    <div class="grid grid-cols-3 gap-4">
-      <div class="">
-      <h2>all category:{category.length}</h2>
-      {
-        category.map(cata=><Leftside
-        key={cata.id}
-        cata={cata}
-        ></Leftside>
-        
-        )
-      }
-      </div>
-      <div class="col-span-2">
-       {
-        courses.map(course=><Card
-        key={course._id}
-        course={course}
-        ></Card>)
-       }
-      </div>
+const courses=useLoaderData()
+console.log(courses)
+
+const {title,details,image_url}=courses
+    return (
+        <div className="card mb-3 card-compact w-96 bg-base-100 shadow-xl">
+         
+  <figure><img src={image_url} alt="Shoes" /></figure>
+  <div className="card-body">
+    <h2 className="card-title">{title}</h2>
+    <p>{details}</p>
+   <div className="card-actions justify-end">
+      <button className="btn btn-primary">Go to Primer</button>
     </div>
-  );
+  </div>
+</div>
+    );
 };
 
 export default Courses;

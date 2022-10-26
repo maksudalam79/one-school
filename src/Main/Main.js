@@ -1,25 +1,25 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-import Footer from '../layout/pages/Footer';
-import Header from '../layout/pages/Header';
-import Navber from '../layout/pages/Navber';
+import React from "react";
+import { Outlet } from "react-router-dom";
+import Footer from "../layout/pages/Footer";
+import Header from "../layout/pages/Login";
+import Leftside from "../layout/pages/Leftside";
+import Navber from "../layout/pages/Navber";
 
 const Main = () => {
-    return (
+  return (
+    <div className="row ">
+      <Navber></Navber>
+      <div className="grid grid-cols-2 m-4">
         <div>
-            <div>
-                <Navber></Navber>
-                
-            </div>
-          <div>
-                <Outlet></Outlet>
-            </div>
-            <div>
-                <Footer></Footer>
-            </div>
-            
+          <Leftside></Leftside>
         </div>
-    );
+        <div>
+          <Outlet></Outlet>
+        </div>
+      </div>
+      <Footer></Footer>
+    </div>
+  );
 };
 
 export default Main;

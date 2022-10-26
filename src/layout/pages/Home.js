@@ -1,12 +1,13 @@
 import React from "react";
-import Header from "./Header";
-
+import Courses from "./Courses";
+import CoursesDeatiles from "./CoursesDeatiles";
+import Header from "./Login";
+import Leftside from "./Leftside";
 
 const Home = () => {
   return (
     <div>
-        <Header></Header>
-        
+      <CoursesDeatiles></CoursesDeatiles>
     </div>
   );
 };

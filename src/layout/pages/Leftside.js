@@ -1,15 +1,28 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 
 
-const Leftside = ({cata}) => {
-const {name,id}=cata
+const Leftside = () => {
+    const [courses,setCourse]=useState([])
+    useEffect(()=>{
+        fetch('http://localhost:5000/coursesCategory')
+        .then(res=>res.json())
+        .then(data=>setCourse(data))
+    },[])
     
     
   
     return (
-       <li><Link to={`/courses/${id}`}>{name}</Link></li>
+       <div className='pt-6'>
+        {
+            courses.map(course=><li>
+                <Link to={`/courses/${course.id}`}
+            key={course}
+             >{course.name}</Link>
+            </li>)
+        }
+       </div>
     );
 };
 
