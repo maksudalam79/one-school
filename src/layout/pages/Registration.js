@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../contex/AuthProvider';
 
 const Registration = () => {
     const {createUser}=useContext(AuthContext)
+    const [error,setError]=useState('')
     const handlarSubmit=(event)=>{
            event.preventDefault()
            const from=event.target
@@ -10,14 +11,18 @@ const Registration = () => {
            const PhotoURL=from.PhotoURL.value
            const email=from.email.value
            const password=from.password.value
-           createUser(email,password)
+           createUser(email,password,name,PhotoURL)
            .then(result=>{
             const user=result.user
             console.log(user)
+            setError('')
             from.reset()
 
            })
-           .catch(error=>console.log(error))
+           .catch(error=>{
+            console.log(error)
+            setError(error.message)
+          })
 
 }
     return (
@@ -48,6 +53,9 @@ const Registration = () => {
           <label className="label">
             <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
           </label>
+          <div>
+            {error}
+          </div>
         </div>
         <div className="form-control mt-6">
           <button className="btn w-32 btn-primary mb-2">Registration</button>

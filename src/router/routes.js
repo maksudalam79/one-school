@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import Courses from "../layout/pages/Courses";
-import CoursesDeatiles from "../layout/pages/CoursesDeatiles";
 import Login from "../layout/pages/Login";
 import Home from "../layout/pages/Home";
 import Registration from "../layout/pages/Registration";
 import Main from "../Main/Main";
 import Question from "../layout/pages/Question";
+import Privite from "./Privite";
 
 export const router = createBrowserRouter([
   {
@@ -18,7 +18,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/courses/:id",
-        element: <Courses></Courses>,
+        element: <Privite><Courses></Courses></Privite>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/courses/${params.id}`),
       },
@@ -27,7 +27,7 @@ export const router = createBrowserRouter([
         element:<Question></Question>
       },
      {
-        path: "/log in",
+        path: "/login",
         element: <Login></Login>,
       },
 

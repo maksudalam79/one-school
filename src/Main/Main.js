@@ -1,7 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Footer from "../layout/pages/Footer";
-import Header from "../layout/pages/Login";
 import Leftside from "../layout/pages/Leftside";
 import Navber from "../layout/pages/Navber";
 

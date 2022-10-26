@@ -1,12 +1,17 @@
-import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import React, { useContext } from "react";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import React, { useContext, useState } from "react";
 import { FaGoogle, FaGithub } from "react-icons/fa";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contex/AuthProvider";
 
-const Header = () => {
-  const { providerLogin, signIn,providerGithub } = useContext(AuthContext);
+const Login = () => {
+  const { providerLogin, signIn, providerGithub } = useContext(AuthContext);
+  const [error, setError] = useState("");
   const googleProvider = new GoogleAuthProvider();
-  const githubprovider=new GithubAuthProvider()
+  const githubprovider = new GithubAuthProvider();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const handlergoogleSignin = () => {
     providerLogin(googleProvider)
       .then((result) => {
@@ -15,26 +20,31 @@ const Header = () => {
       })
       .catch((error) => console.log(error));
   };
-  const handlergithubSignin=()=>{
+  const handlergithubSignin = () => {
     providerGithub(githubprovider)
-    .then(result=>{
-        const user=result.user
-        console.log(user)
-    })
-    .catch(error=>console.log(error))
-  }
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.log(error));
+  };
   const handlarLogIn = (event) => {
     event.preventDefault();
-    const from = event.target;
-    const email = from.email.value;
-    const password = from.password.value;
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
     signIn(email, password)
       .then((result) => {
         const user = result.user;
         console.log(user);
-        from.reset()
+        form.reset();
+        setError("");
+        navigate(from,{ replace: true });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        setError(error.message);
+      });
   };
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -77,6 +87,9 @@ const Header = () => {
                   Forgot password?
                 </a>
               </label>
+              <div>
+                <p>{error}</p>
+              </div>
             </div>
             <div className="form-control mt-6">
               <button className="btn btn-primary mb-2">Login</button>
@@ -86,7 +99,10 @@ const Header = () => {
               >
                 <FaGoogle></FaGoogle> Log in with google
               </button>
-              <button onClick={handlergithubSignin} className="btn btn-success mb-2">
+              <button
+                onClick={handlergithubSignin}
+                className="btn btn-success mb-2"
+              >
                 <FaGithub></FaGithub> Log in with Github
               </button>
             </div>
@@ -97,4 +113,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Login;
