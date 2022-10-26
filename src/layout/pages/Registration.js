@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../contex/AuthProvider";
 
 const Registration = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser,userupdateProfile } = useContext(AuthContext);
   const [error, setError] = useState("");
   const handlarSubmit = (event) => {
     event.preventDefault();
@@ -11,18 +11,28 @@ const Registration = () => {
     const PhotoURL = from.PhotoURL.value;
     const email = from.email.value;
     const password = from.password.value;
-    createUser(email, password, name, PhotoURL)
+    createUser(email, password)
       .then((result) => {
         const user = result.user;
         console.log(user);
         setError("");
         from.reset();
+        handleprofile(name,PhotoURL)
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         setError(error.message);
       });
   };
+  const handleprofile=(name,photoURL)=>{
+    const profile={
+      displayName:name,
+      photoURL:photoURL
+    }
+    userupdateProfile(profile)
+    .then(()=>{})
+    .catch(error=>console.error(error))
+  }
   return (
     <form onSubmit={handlarSubmit} className="card-body">
       <div className="form-control">
