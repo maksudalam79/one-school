@@ -6,6 +6,7 @@ import Registration from "../layout/pages/Registration";
 import Main from "../Main/Main";
 import Question from "../layout/pages/Question";
 import Privite from "./Privite";
+import Found from "../layout/pages/Found";
 
 export const router = createBrowserRouter([
   {
@@ -35,7 +36,10 @@ export const router = createBrowserRouter([
         path: "/registration",
         element: <Registration></Registration>,
       },
-      {},
+      {
+          path:'*',element:<Found></Found>
+      }
+      
     ],
   },
 ]);
