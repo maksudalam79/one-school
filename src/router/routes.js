@@ -7,6 +7,8 @@ import Main from "../Main/Main";
 import Question from "../layout/pages/Question";
 import Privite from "./Privite";
 import Found from "../layout/pages/Found";
+import Leftside from "../layout/pages/Leftside";
+import Course from "../layout/pages/Course";
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +18,11 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+         path:'/coursesCategory',
+         element:<Course></Course>,
+         loader:()=>fetch('http://localhost:5000/coursesCategory')
       },
       {
         path: "/courses/:id",

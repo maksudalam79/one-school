@@ -3,15 +3,13 @@ import { Outlet } from "react-router-dom";
 import Footer from "../layout/pages/Footer";
 import Leftside from "../layout/pages/Leftside";
 import Navber from "../layout/pages/Navber";
+import Registration from "../layout/pages/Registration";
 
 const Main = () => {
   return (
     <div className="row ">
       <Navber></Navber>
-      <div className="grid grid-cols-2 m-4">
-        <div>
-          <Leftside></Leftside>
-        </div>
+      <div className="">
         <div>
           <Outlet></Outlet>
         </div>

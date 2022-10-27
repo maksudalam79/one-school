@@ -7,6 +7,7 @@ import { AuthContext } from "../../contex/AuthProvider";
 const Login = () => {
   const { providerLogin, signIn, providerGithub } = useContext(AuthContext);
   const [error, setError] = useState("");
+ 
   const googleProvider = new GoogleAuthProvider();
   const githubprovider = new GithubAuthProvider();
   const navigate = useNavigate();
@@ -40,12 +41,24 @@ const Login = () => {
         form.reset();
         setError("");
         navigate(from,{ replace: true });
+        
+
       })
       .catch((error) => {
         console.log(error);
         setError(error.message);
       });
   };
+  
+  // const changeCursor = () => {
+  //   setCursor(prevState => {
+  //     if(prevState === displayName){
+  //       return 'pointer';
+  //     }
+  //     return 'crosshair';
+  //   });
+  // }
+
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">

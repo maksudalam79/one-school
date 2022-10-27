@@ -9,15 +9,13 @@ console.log(courses)
 
 const {title,details,image_url}=courses
     return (
-        <div className="card mb-3 card-compact w-96 bg-base-100 shadow-xl">
+        <div className="card mb-3 m-5 card-compact w-96 bg-base-100 shadow-xl m-auto">
          
   <figure><img src={image_url} alt="Shoes" /></figure>
   <div className="card-body">
     <h2 className="card-title">{title}</h2>
     <p>{details}</p>
-   <div className="card-actions justify-end">
-      <button className="btn btn-primary">Go to Primer</button>
-    </div>
+   
   </div>
 </div>
     );

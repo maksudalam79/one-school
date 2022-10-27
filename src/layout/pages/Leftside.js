@@ -1,30 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
 
 
 
 const Leftside = () => {
-    const [courses,setCourse]=useState([])
-    useEffect(()=>{
-        fetch('http://localhost:5000/coursesCategory')
-        .then(res=>res.json())
-        .then(data=>setCourse(data))
-    },[])
+    const cata=useLoaderData()
+    console.log(cata)
     
     
   
     return (
        <div className='pt-6'>
+        <h1 className='text-2xl'>Our Courses</h1>
         {
-            courses.map(course=><li>
-                <Link to={`/courses/${course.id}`}
-            key={course.id}
-            >{course.name}</Link>
+            cata.map(c=><li className='border w-48 mx-auto list-none border-rounded m-2 p-2'>
+                <Link to={`/courses/${c.id}`}
+            key={c.id}
+            >{c.name}
+            </Link>
             </li>
+            
                 
             )
         }
+        
        </div>
     );
 };
